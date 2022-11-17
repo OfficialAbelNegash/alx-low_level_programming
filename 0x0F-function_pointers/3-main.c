@@ -1,42 +1,48 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "3-calc.h"
 
 /**
-* main - Entry point
-*
-* @argc: length of command line arguments
-*
-* @argv: double pointer to cli arguments
-*
-* Return: 0
-*/
-
+ * main - Calculates maths binary operations
+ * @argc: Interger argument count from the command line.
+ * @argv: Array pointer to argument strings
+ *
+ * Description: Calculate the binary operations + - / * % only if argc is 4 and
+ * the second operand is not 0 in the case of / and %
+ * Return: EXIT_SUCCCESS if all goes well, or BAD_ARGS wrong argument count,
+ * BAD_OPS for wrong operator arguments and BAD_MATH for DIV/0 errors.
+ */
 int main(int argc, char *argv[])
 {
-	int (*func_ptr)(int, int);
+	int a, b, r;
+	int (*f)(int, int);
 
 	if (argc != 4)
 	{
-		printf("Error\n");
-		exit(98);
+		printf("%s\n", "Error");
+		return (BAD_ARGS);
 	}
 
-	if (argv[2][1] != '\0')
+	if (*argv[2] != '+' && *argv[2] != '-' && *argv[2] != '/' && *argv[2] !=
+			'*' && *argv[2] != '%')
 	{
-		printf("Error\n");
-		exit(99);
+		printf("%s\n", "Error");
+		return (BAD_OPS);
 	}
 
-	func_ptr = get_op_func(argv[2]);
-
-	if (func_ptr == NULL)
+	if ((*argv[2] == '/' || *argv[2] == '%') && *argv[3] == 0)
 	{
-		printf("Error\n");
-		exit(99);
+		printf("%s\n", "Error");
+		return (BAD_MATH);
 	}
 
-	printf("%d\n", func_ptr(atoi(argv[1]), atoi(argv[3])));
+	a = atoi(argv[1]);
+	b = atoi(argv[3]);
 
-	return (0);
+	f = get_op_func(argv[2]);
+	r = f(a, b);
+
+	printf("%d\n", r);
+
+	return (EXIT_SUCCESS);
 }

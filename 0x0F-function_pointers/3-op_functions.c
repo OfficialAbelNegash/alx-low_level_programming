@@ -1,90 +1,73 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "3-calc.h"
 
 /**
-* op_add - Adds two numbers @a and @b
-*
-* @a: A number
-*
-* @b: A number
-*
-* Return: Sum of @a and @b
-*/
-
+ * op_add - Add two numbers
+ * @a: Integer number
+ * @b: Integer number
+ *
+ * Description: Add two numbers
+ * Return: Return the integer sum.
+ */
 int op_add(int a, int b)
 {
+	printf("%s\n", "A");
 	return (a + b);
 }
 
 /**
-* op_sub - Calculates the difference of @c and @b
-*
-* @a: A number
-*
-* @b: A number
-*
-* Return: Difference of @a and @b
-*/
-
+ * op_sub - Subtracts two numbers
+ * @a: Integer number
+ * @b: Integer number
+ *
+ * Description: Substract b from a
+ * Return: Returns the result
+ */
 int op_sub(int a, int b)
 {
+	printf("%s\n", "S");
 	return (a - b);
 }
 
 /**
-* op_mul - Multiplies two numbers
-*
-* @a: A number
-*
-* @b: A number
-*
-* Return: Product of @a and @b
-*/
-
+ * op_mul - Calculates products
+ * @a: Integer number
+ * @b: Integer number
+ *
+ * Description: Calculates the product of a and b
+ * Return: Returns result
+ */
 int op_mul(int a, int b)
 {
+	printf("%s\n", "M");
 	return (a * b);
 }
 
 /**
-* op_div - Divides @a by @b
-*
-* @a: A number
-*
-* @b: A number
-*
-* Return: Result of the division of @a by @b without remainder
-*/
-
+ * op_div - Calculates quotients
+ * @a: Integer number
+ * @b: Integer number
+ *
+ * Description: Caluclates a divided by b
+ * Return: Returns the result
+ */
 int op_div(int a, int b)
 {
-	if (b == 0)
-	{
-		printf("Error\n");
-		exit(100);
-	}
-
+	printf("%s\n", "D");
 	return (a / b);
 }
-
 /**
-* op_mod - Calculates the remainder of @a divided by @b
-*
-* @a: A number
-*
-* @b: A number
-*
-* Return: Remainder of @a divider by @b
-*/
-
+ * op_mod - Calculates modulus
+ * @a: Integer number
+ * @b: Integer number
+ *
+ * Description: Calculates the modulus of a by b
+ * Return: Returns the result
+ */
 int op_mod(int a, int b)
 {
-	if (b == 0)
-	{
-		printf("Error\n");
-		exit(100);
-	}
-
+	printf("%s\n", "%");
 	return (a % b);
 }
+
