@@ -1,48 +1,46 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "3-calc.h"
 
 /**
- * main - Calculates maths binary operations
- * @argc: Interger argument count from the command line.
- * @argv: Array pointer to argument strings
+ * main - program that perfroms simple operations
+ * @argc: number of arguments
+ * @argv: array of arguments
  *
- * Description: Calculate the binary operations + - / * % only if argc is 4 and
- * the second operand is not 0 in the case of / and %
- * Return: EXIT_SUCCCESS if all goes well, or BAD_ARGS wrong argument count,
- * BAD_OPS for wrong operator arguments and BAD_MATH for DIV/0 errors.
+ * Return: Always 0 (Success)
  */
 int main(int argc, char *argv[])
 {
-	int a, b, r;
-	int (*f)(int, int);
+	int arg1, arg2, result;
+	char o;
+	int (*func)(int, int);
 
 	if (argc != 4)
 	{
-		printf("%s\n", "Error");
-		return (BAD_ARGS);
+		printf("Error\n");
+		exit(98);
 	}
 
-	if (*argv[2] != '+' && *argv[2] != '-' && *argv[2] != '/' && *argv[2] !=
-			'*' && *argv[2] != '%')
+	arg1 = atoi(argv[1]);
+	arg2 = atoi(argv[3]);
+
+	func = get_op_func(argv[2]);
+
+	if (!func)
 	{
-		printf("%s\n", "Error");
-		return (BAD_OPS);
+		printf("Error\n");
+		exit(99);
 	}
 
-	if ((*argv[2] == '/' || *argv[2] == '%') && *argv[3] == 0)
+	o = *argv[2];
+
+	if ((o == '/' || o == '%') && arg2 == 0)
 	{
-		printf("%s\n", "Error");
-		return (BAD_MATH);
+		printf("Error\n");
+		exit(100);
 	}
 
-	a = atoi(argv[1]);
-	b = atoi(argv[3]);
+	result = func(arg1, arg2);
 
-	f = get_op_func(argv[2]);
-	r = f(a, b);
+	printf("%d\n", result);
 
-	printf("%d\n", r);
-
-	return (EXIT_SUCCESS);
+	return (0);
 }
